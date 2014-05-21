@@ -11,9 +11,12 @@ possible structure ~
 
 Commands so far:
 
-    	bt-device -l
+    bt-device -l
+    
+    bt-obex    
 
-        bluez-test-adapter address 
+    bluez-test-adapter address 
+
 that one gets the adapter addresses
 
 
