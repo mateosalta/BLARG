@@ -29,3 +29,12 @@ http://unix.stackexchange.com/questions/96693/connect-to-a-bluetooth-device-via-
 
 http://stackoverflow.com/questions/8130396/fast-way-to-check-many-bluetooth-devices-by-mac-address
 
+------
+
+- [ ] Figure out basics
+  - [ ] loop or something
+  - [ ] magic to convert MAC address
+  - [ ] add more checkboxes later
+  - [ ] 
+- [ ] ...?
+- [ ] Profit!?
