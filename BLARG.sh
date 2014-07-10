@@ -33,7 +33,7 @@ Copyright (C) {2014} {mateosalta}
 echo "BLARG version 2, Copyright (C) 2014 mateosalta
     Gnomovision comes with ABSOLUTELY NO WARRANTY;
     This is free software, and you are welcome to redistribute it
-    under certain conditions;
+    under certain conditions;"
 
 
 
