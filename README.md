@@ -9,13 +9,19 @@ possible structure ~
 
 ------
 
+The objective of BLARG is to create a simple shell script for a kiosk computer, that auto sends a file once a Android device connects via bluetooth.
+
 Commands so far:
 
-    bt-device -l
+    ---bt-device -l---
     
-    bt-obex    
+    hcitool con
+    
+    bluetooth-sendto --device=
+    
+    ---bt-obex---   
 
-    bluez-test-adapter address 
+    ---bluez-test-adapter address---
 
 that one gets the adapter addresses
 
@@ -31,10 +37,10 @@ http://stackoverflow.com/questions/8130396/fast-way-to-check-many-bluetooth-devi
 
 ------
 
-- [ ] Figure out basics
-  - [ ] loop or something
-  - [ ] magic to convert MAC address
+- [x] Figure out basics
+  - [x] loop or something
+  - [x] magic to convert MAC address
   - [ ] add more checkboxes later
-  - [ ] 
-- [ ] ...?
-- [ ] Profit!?
+  - [x] ...
+- [x] ...?
+- [x] Profit!?
