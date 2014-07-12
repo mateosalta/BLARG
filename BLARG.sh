@@ -70,7 +70,7 @@ while true; do
 
 		#loop for each line, send file and disconnect each divice
 		for line in $filelines ; do
-			echo -e "\033[32mDevice Found: $line" && echo -e "\033[00mSending file..." && bluetooth-sendto --device="$line" $1 && wait && hcitool dc $line 19 &
+			echo -e "\033[32mDevice Found: $line" && echo -e "\033[00mSending file..." && bluetooth-sendto --device="$line" $1 && wait && hcitool dc $line 19 && echo -e "\033[31mDevice Disconnected: $line" &
 		morejobs 2 
 		done
 
