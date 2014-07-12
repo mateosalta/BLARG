@@ -45,11 +45,8 @@ function morejobs() {
 
 while true; do
 	
-	#restet line variable, start fresh for loop	
-	#unset line
-	
 	#search for connected devices, edit output into usable addresses
-	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file 
+	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file
 	echo -e "\033[00mScaning for Connected Devices..."
 	
 	#count how many connections open, remove devices that are currently sending
@@ -72,7 +69,16 @@ while true; do
 		for line in $filelines ; do
 			echo -e "\033[32mDevice Found: $line" && echo -e "\033[00mSending file..." && bluetooth-sendto --device="$line" $1 && wait && hcitool dc $line 19 && echo -e "\033[31mDevice Disconnected: $line" &
 		morejobs 2 
-		done
+ 		done
+		
+	#if window is open for longer than 55 seconds (after send time out, or user rejected) kill
+	if [ "$(pidof bluetooth-sendto)" ]
+	then a=`pidof bluetooth-sendto | cut -d' ' -f1`
+	     b=`ps -p $a -o etime | sed -e '2!d' | sed -e 's/^[ \t]*//' | cut -d':' -f2`
+	     if [[ $b -gt 55 ]]
+	     then kill -SIGKILL $a
+	     fi
+	fi
 
 	done
 		
