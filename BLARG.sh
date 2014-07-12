@@ -50,7 +50,7 @@ while true; do
 	
 	#search for connected devices, edit output into usable addresses
 	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file 
-Zz	echo -e "\033[00mScaning for Connected Devices..."
+	echo -e "\033[00mScaning for Connected Devices..."
 	
 	#count how many connections open, remove devices that are currently sending
 	v=`echo -n "$(pidof bluetooth-sendto)" | wc -w`
