@@ -46,7 +46,7 @@ function morejobs() {
 while true; do
 	
 	#restet line variable, start fresh for loop	
-	unset line
+	#unset line
 	
 	#search for connected devices, edit output into usable addresses
 	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file 
@@ -64,22 +64,16 @@ while true; do
 	fi
 	sleep 3
 
-#cat file for line by line loop
-filename='file'
-filelines=`cat $filename`
+		#cat file for line by line loop
+		filename='file'
+		filelines=`cat $filename`
 
-	#loop for each line, send file and disconnect each divice
-	for line in $filelines ; do
-		echo -e "\033[32mDevice Found: $line" && echo -e "\033[00mSending file..." && bluetooth-sendto --device="$line" $1 &
-	morejobs 2 
-	done
+		#loop for each line, send file and disconnect each divice
+		for line in $filelines ; do
+			echo -e "\033[32mDevice Found: $line" && echo -e "\033[00mSending file..." && bluetooth-sendto --device="$line" $1 && wait && hcitool dc $line 19 &
+		morejobs 2 
+		done
 
-		sleep 2
-		if [ -z "$(echo -n $(pidof bluetooth-sendto))" ]
-		then hcitool dc $line 19
-		fi
-		
-	
 	done
 		
 done
