@@ -36,6 +36,7 @@ echo -e "This is free software, and you are welcome"
 echo -e "to redistribute it under certain conditions;"
 sleep 2
 
+#jobs? can't remember why... something to do with backgrouning and doing things at the same time, I think it works, just as long as it is not breaking something I'll leave it in.
 function morejobs() {
     while [ $(jobs -p | wc -l) -ge $1 ]; do
         sleep 1
@@ -43,17 +44,21 @@ function morejobs() {
 }
 
 while true; do
+	
+	#restet line variable, start fresh for loop	
 	unset line
+	
 	#search for connected devices, edit output into usable addresses
 	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file 
+Zz	echo -e "\033[00mScaning for Connected Devices..."
 	
-	#text showing if there are no connected devices	
-	echo -e "\033[00mScaning for Connected Devices..."
-	
+	#count how many connections open, remove devices that are currently sending
+	v=`echo -n "$(pidof bluetooth-sendto)" | wc -w`
 	if [ "$(pidof bluetooth-sendto)" ]
-	then cat file | sed -e '1d' > file
+	then cat file | sed -e '1,'$v\d > file
 	fi
 
+	#report no new devices found
 	if [ "$(cat file)" = "" ]
 	then echo "No Devices Found"
 	fi
