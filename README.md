@@ -11,6 +11,8 @@ possible structure ~
 
 The objective of BLARG is to create a simple shell script for a kiosk computer, that auto sends a file once a Android device connects via bluetooth.
 
+Testing and development carried out on Ubuntu 14.04.
+uses "sed -i" so usage on systems without GNU sed will not work
 
 ##Usage
  
