@@ -45,7 +45,7 @@ function morejobs() {
 while true; do
 	
 	#search for connected devices, edit output into usable addresses
-	#hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file
+	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file
 	echo -e "\033[00mScaning for Connected Devices..."
 
 	#if address in "list"(device allready trying connection) remove from "file"
@@ -54,7 +54,6 @@ while true; do
 	
 	exec ./connect.sh $1 &
 	morejobs 7
-		
 	
 	sleep 4
 	#report no new devices found
