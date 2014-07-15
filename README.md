@@ -52,4 +52,4 @@ BLARG is orginally intended for use at a kiosk or a small computer installed in 
 
 ###Why a shell script?
 
-Although the initial writing of BLARG was complex, and it seemed to complicated to detect multiple devices thus the name including "Galimatias". However; Writing it as a shell script allows for adding any command line tool to the functionality of the program, you can add a section at the begining to rsync data from a network drive then bluecast a file off of that, add a command to e-mail someone for every file sent, considering the flexibility the posibilites are endless.
+Although the initial writing of BLARG was complex, and it seemed to complicated to detect multiple devices thus the name including "Galimatias". However; Writing it as a shell script allows for adding any command line tool to the functionality of the program with little coding skill, you can add a section at the begining to rsync data from a network drive then bluecast a file off of that, add a command to e-mail someone for every file sent, considering the flexibility the posibilites are endless.
