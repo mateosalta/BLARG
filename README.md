@@ -44,3 +44,12 @@ http://stackoverflow.com/questions/8130396/fast-way-to-check-many-bluetooth-devi
   - [x] ...
 - [x] ...?
 - [x] Profit!?
+
+------
+###What can this be used for?
+
+BLARG is orginally intended for use at a kiosk or a small computer installed in a public setting, the purpose being to distribute promotional files such as background walpaper, new song, a ongoing video series, or speach. Having a local place to recieve that material without using internet or data. It's here: get it now.
+
+###Why a shell script?
+
+Although the initial writing of BLARG was complex, and it seemed to complicated to detect multiple devices thus the name including "Galimatias". However; Writing it as a shell script allows for adding any command line tool to the functionality of the program, you can add a section at the begining to rsync data from a network drive then bluecast a file off of that, add a command to e-mail someone for every file sent, considering the flexibility the posibilites are endless.
