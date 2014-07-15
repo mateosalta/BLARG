@@ -11,6 +11,16 @@ possible structure ~
 
 The objective of BLARG is to create a simple shell script for a kiosk computer, that auto sends a file once a Android device connects via bluetooth.
 
+
+##Usage
+ 
+`cd` to location of BLARG  
+use `chmod +x` to make BLARG.sh and connect.sh executable  
+requires rights for device disconnect command  
+`sudo ./BLARG.sh blarg.jpg`   
+replace blarg.jpg with file of choice
+
+
 Commands so far:
 
     ---bt-device -l---
