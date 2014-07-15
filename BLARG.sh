@@ -36,7 +36,6 @@ echo -e "This is free software, and you are welcome"
 echo -e "to redistribute it under certain conditions;"
 sleep 2
 
-#jobs? can't remember why... something to do with backgrouning and doing things at the same time, I think it works, just as long as it is not breaking something I'll leave it in.
 function morejobs() {
     while [ $(jobs -p | wc -l) -ge $1 ]; do
         sleep 1
@@ -45,50 +44,27 @@ function morejobs() {
 
 while true; do
 	
-	#restet line variable, start fresh for loop	
-	#unset line
-	
 	#search for connected devices, edit output into usable addresses
-	hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file
+	#hcitool con | sed -e '1d' | sed 's/\(.\{7\}\)//' | sed 's/ .*//' > file
 	echo -e "\033[00mScaning for Connected Devices..."
-	
-	#count how many connections open, remove devices that are currently sending
-	#v=`echo -n "$(pidof bluetooth-sendto)" | wc -w`
-	#if [ "$(pidof bluetooth-sendto)" ]
-	#then cat file | sed -e '1,'$v\d > file
-	#fi
 
 	#if address in "list"(device allready trying connection) remove from "file"
-	if [ "$(pidof bluetooth-sendto)" ]
-	then sed -i "/^${list}/d" file
-	fi
+	fgrep -v -f list file > new
+	cat new > file
 	
+	exec ./connect.sh $1 &
+	morejobs 7
+		
+	
+	sleep 4
 	#report no new devices found
 	if [ "$(cat file)" = "" ]
-	then echo "No Devices Found"
+	then echo -e "\033[00mNo Devices Found"
 	fi
-	sleep 3
 
-		#cat file for line by line loop
-		filename='file'
-		filelines=`cat $filename`
-
-		#loop for each line, send file and disconnect each divice
-		for line in $filelines ; do
-			echo "$line" >> list
-			echo -e "\033[32mDevice Found: $line" && echo -e "\033[00mSending file..." && bluetooth-sendto --device="$line" $1 && echo "$line" >> list && wait && hcitool dc $line 19 && echo -e "\033[31mDevice Disconnected: $line" && sed -i '/'$line'/d' ./list &
-		
-		#put in simultanus jobs, 7 limit of adapter - may need to be adjusted		
-		morejobs 7
- 		done
-		
-	#if window is open for longer than 55 seconds (after send time out, or user rejected) kill
-	if [ "$(pidof bluetooth-sendto)" ]
-	then a=`pidof bluetooth-sendto | cut -d' ' -f1`
-	b=`ps -p $a -o etime | sed -e '2!d' | sed -e 's/^[ \t]*//' | cut -d':' -f2`
-		if [[ $b -gt 55 ]]
-		then kill -SIGKILL $a
-		fi
+	#slowly clear the block list, so that it dosn't detect a recent disconnect...
+	if [ -z "$(pidof bluetooth-sendto)" ] 
+	then sed -i '1d' list
 	fi
 	
 done
