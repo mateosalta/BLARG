@@ -18,11 +18,11 @@ then
 	echo -e "\033[31mDevice Disconnected: $line"
 fi
 
-#if window is open for longer than 55 seconds (after send time out, or user rejected) kill
-	if [ "$(pidof bluetooth-sendto)" ]
-	then a=`pidof bluetooth-sendto | cut -d' ' -f1`
-		b=`ps -p $a -o etime | sed -e '2!d' | sed -e 's/^[ \t]*//' | cut -d':' -f2`
-		if [[ $b -gt 55 ]]
-		then kill -SIGKILL $a
-		fi
-	fi
+##Broken -if window is open for longer than 55 seconds (after send time out, or user rejected) kill - Broken
+#	if [ "$(pidof bluetooth-sendto)" ]
+#	then a=`pidof bluetooth-sendto | cut -d' ' -f1`
+#		b=`ps -p $a -o etime | sed -e '2!d' | sed -e 's/^[ \t]*//' | cut -d':' -f2`
+#		if [[ $b -gt 55 ]]
+#		then kill -SIGKILL $a
+#		fi
+#	fi
