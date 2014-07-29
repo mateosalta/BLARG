@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Name=BLARG
+Exec=sudo /home/mateo/BLARG/BLARG.sh
+Icon=/home/mateo/BLARG/blarg.png
+Path=/home/mateo/BLARG/
+
