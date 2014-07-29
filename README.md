@@ -1,5 +1,7 @@
 BLARG
 =====
+![icon](https://raw.github.com/mateosalta/BLARG/master/blarg.png)
+
 
 Bluetooth Linux Automatic Rusticating Galimatias (bluecasting)
 
